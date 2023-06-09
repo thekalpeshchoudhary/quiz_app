@@ -18,17 +18,20 @@ class QuestionsSummary extends StatelessWidget {
                 Container(
                   width: 30,
                   height: 30,
+                  margin: const EdgeInsets.symmetric(horizontal: 15),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                       color: (data['answeredCorrectly'] as bool)
-                          ? Colors.red
-                          : Colors.green),
+                          ? const Color.fromARGB(255, 152, 252, 155)
+                          : const Color.fromARGB(255, 255, 118, 108)
+                          ,),
                   child: Center(
                     child: Text(
                       ((data['questions_index'] as int) + 1).toString(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
+                        color: Colors.black,
                         fontSize: 18,
                       ),
                     ),
