@@ -4,7 +4,7 @@ import 'package:quiz_app/data/questions.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen(this.onSelectAnswer,{super.key});
+  const QuestionsScreen(this.onSelectAnswer, {super.key});
   final void Function(String answer) onSelectAnswer;
 
   @override
@@ -16,10 +16,10 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
   void answerQuestion(String answer) {
-      widget.onSelectAnswer(answer);
-      setState(() {
-        currentQuestionIndex++;
-      });
+    widget.onSelectAnswer(answer);
+    setState(() {
+      currentQuestionIndex++;
+    });
   }
 
   @override
@@ -33,13 +33,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(currentQuestion.text,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                )),
+            Text(
+              currentQuestion.text,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(
               height: 35,
             ),
