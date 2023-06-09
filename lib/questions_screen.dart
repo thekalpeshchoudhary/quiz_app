@@ -15,6 +15,7 @@ class QuestionsScreen extends StatefulWidget {
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
+
   void answerQuestion(String answer) {
     widget.onSelectAnswer(answer);
     setState(() {
@@ -49,7 +50,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  AnswerButton(eachAnswer, answerQuestion),
+                  AnswerButton(eachAnswer,answerQuestion),
                   const SizedBox(
                     height: 10,
                   ),

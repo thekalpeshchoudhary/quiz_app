@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/data/questions.dart';
+import 'package:quiz_app/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen(this.choosenAnswers, {super.key});
   final List<String> choosenAnswers;
 
   List<Map<String, Object>> getSummaryData() {
-    final List<Map<String, Object>> summary = [];
-    for (var i = 0; i > choosenAnswers.length; i++) {
+    List<Map<String, Object>> summary = [];
+    for (var i = 0; i < choosenAnswers.length; i++) {
+
       summary.add({
         'questions_index': i,
         'question': questions[i].text,
@@ -41,7 +43,7 @@ class ResultsScreen extends StatelessWidget {
             const SizedBox(
               height: 25,
             ),
-            const Text('List of answers'),
+            QuestionsSummary(getSummaryData()),
             const SizedBox(
               height: 25,
             ),
