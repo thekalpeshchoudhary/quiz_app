@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/answer_button.dart';
 import 'package:quiz_app/data/questions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen(this.onSelectAnswer,{super.key});
+  final void Function(String answer) onSelectAnswer;
+
   @override
   State<QuestionsScreen> createState() {
     return _QuestionsScreenState();
@@ -12,12 +15,11 @@ class QuestionsScreen extends StatefulWidget {
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
-  void answerQuestion() {
-    if (currentQuestionIndex < questions.length - 1) {
+  void answerQuestion(String answer) {
+      widget.onSelectAnswer(answer);
       setState(() {
         currentQuestionIndex++;
       });
-    }
   }
 
   @override
@@ -31,19 +33,26 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              currentQuestion.text,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-              ),
-            ),
+            Text(currentQuestion.text,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                )),
             const SizedBox(
               height: 35,
             ),
             ...currentQuestion.getShuffledAnswers().map((eachAnswer) {
-              return AnswerButton(eachAnswer, answerQuestion);
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  AnswerButton(eachAnswer, answerQuestion),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
+              );
             }),
           ],
         ),
